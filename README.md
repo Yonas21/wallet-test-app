@@ -1,46 +1,77 @@
-# Getting Started with Create React App
+# Wallet Test App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React.js + TypeScript mobile wallet application with transaction management and daily points calculation.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **TransactionsList Screen**: Displays card balance, daily points, and latest transactions
+- **TransactionDetail Screen**: Shows detailed information for individual transactions
+- **Daily Points Calculation**: Implements the season-based points algorithm
+- **Mobile-Responsive Design**: Optimized for mobile devices
+- **FontAwesome Icons**: Uses FontAwesome for consistent iconography
 
-### `npm start`
+## Technical Requirements Met
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- ✅ Built with React.js and TypeScript
+- ✅ Test data stored in JSON file
+- ✅ FontAwesome icons implemented
+- ✅ Mobile layout only
+- ✅ Two main screens: TransactionsList and TransactionDetail
+- ✅ Card balance with limit and available balance
+- ✅ Daily points calculation with season-based algorithm
+- ✅ Transaction list with proper formatting
+- ✅ Transaction detail screen with all information
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Daily Points Algorithm
 
-### `npm test`
+The app implements a sophisticated daily points calculation system:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Day 1 of season**: 2 points
+- **Day 2 of season**: 3 points  
+- **Day 3+ of season**: 100% of day-2 points + 60% of day-1 points
+- **Formatting**: Points > 1000 are displayed in "K" format
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Start the development server:
+   ```bash
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm run eject`
+## Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+src/
+├── components/
+│   ├── TransactionsList.tsx
+│   ├── TransactionsList.css
+│   ├── TransactionDetail.tsx
+│   └── TransactionDetail.css
+├── utils/
+│   └── dailyPoints.ts
+├── types.ts
+├── data.json
+├── App.tsx
+└── App.css
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Screenshots
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The application includes two main screens:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. **TransactionsList**: Shows card balance, daily points, and transaction history
+2. **TransactionDetail**: Displays detailed transaction information when clicked
 
-## Learn More
+## Data Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The app uses a JSON file (`src/data.json`) containing:
+- User information (card balance, limits)
+- Transaction history with all required fields
+- Proper date formatting and status handling
