@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Transaction } from '../types';
 import './TransactionDetail.css';
 
@@ -8,7 +10,6 @@ interface TransactionDetailProps {
 }
 
 const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, onBack }) => {
-  console.log('TransactionDetail rendered with:', transaction);
   const formatAmount = (amount: number, type: string): string => {
     const prefix = type === 'Payment' ? '+' : '';
     return `${prefix}$${amount.toFixed(2)}`;
@@ -34,7 +35,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, onBa
       {/* Header */}
       <div className="header">
         <button className="back-button" onClick={onBack}>
-          ←
+          <FontAwesomeIcon icon={faArrowLeft} />
         </button>
       </div>
 
@@ -56,12 +57,12 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, onBa
         <div className="detail-row">
           <span className="detail-label">Status:</span>
           <span className="detail-value status-approved">
-            ✓ Approved
+            <FontAwesomeIcon icon={faCheck} />
+            Approved
           </span>
         </div>
         <div className="detail-row">
-          <span className="detail-label">Payment Method:</span>
-          <span className="detail-value">RBC Bank Debit Card</span>
+          <span className="detail-value">{transaction.description}</span>
         </div>
         <div className="detail-row total-row">
           <span className="detail-label">Total</span>
@@ -71,36 +72,6 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, onBa
         </div>
       </div>
 
-      {/* Additional Details */}
-      <div className="additional-details">
-        <div className="detail-section">
-          <h4>Transaction Details</h4>
-          <div className="detail-item">
-            <span>Merchant:</span>
-            <span>{transaction.name}</span>
-          </div>
-          <div className="detail-item">
-            <span>Location:</span>
-            <span>{transaction.location}</span>
-          </div>
-          <div className="detail-item">
-            <span>Description:</span>
-            <span>{transaction.description}</span>
-          </div>
-          {transaction.authorizedBy && (
-            <div className="detail-item">
-              <span>Authorized By:</span>
-              <span>{transaction.authorizedBy}</span>
-            </div>
-          )}
-          {transaction.cashback > 0 && (
-            <div className="detail-item">
-              <span>Cashback:</span>
-              <span>{transaction.cashback}%</span>
-            </div>
-          )}
-        </div>
-      </div>
     </div>
   );
 };

@@ -27,25 +27,18 @@ function App() {
   const [currentScreen, setCurrentScreen] = useState<'list' | 'detail'>('list');
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
   
-  console.log('Wallet App loaded with data:', data);
-
   const handleTransactionClick = (transaction: Transaction) => {
-    console.log('Transaction clicked:', transaction);
     setSelectedTransaction(transaction);
     setCurrentScreen('detail');
   };
 
   const handleBackToList = () => {
-    console.log('Back button clicked');
     setCurrentScreen('list');
     setSelectedTransaction(null);
   };
 
   return (
-    <div className="App" style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
-      <div style={{ padding: '10px', background: '#e0e0e0', fontSize: '12px' }}>
-        Debug: Screen={currentScreen}, Selected={selectedTransaction?.name || 'None'}
-      </div>
+    <div className="App">
       {currentScreen === 'list' ? (
         <TransactionsList 
           data={data} 
@@ -57,10 +50,7 @@ function App() {
           onBack={handleBackToList}
         />
       ) : (
-        <div style={{ padding: '20px', textAlign: 'center' }}>
-          <h1>Loading Wallet App...</h1>
-          <p>Please wait while we load your transactions.</p>
-        </div>
+        <div>Loading...</div>
       )}
     </div>
   );
